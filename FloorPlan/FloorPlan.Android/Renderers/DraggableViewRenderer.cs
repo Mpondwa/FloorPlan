@@ -6,7 +6,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using FloorPlan;
 using System.ComponentModel;
-using FloorPlan.Renderers;
+using FloorPlan.Custom;
 
 [assembly: ExportRenderer(typeof(DraggableView), typeof(DraggableViewRenderer))]
 namespace FloorPlan.Droid.Renderers

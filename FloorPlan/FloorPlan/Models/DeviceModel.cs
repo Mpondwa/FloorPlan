@@ -11,5 +11,11 @@ namespace FloorPlan.Models
         public string Name { get; set; }
 
         public string Image { get; set; }
+
+        public bool IsPlaced { get; set; }
+
+        public double X { get; set; }
+
+        public double Y { get; set; }
     }
 }

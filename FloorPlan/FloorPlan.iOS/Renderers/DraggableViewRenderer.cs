@@ -6,7 +6,7 @@ using DragViewSample.iOS.Renderers;
 using Xamarin.Forms.Platform.iOS;
 using System.ComponentModel;
 using CoreGraphics;
-using FloorPlan.Renderers;
+using FloorPlan.Custom;
 
 [assembly: ExportRenderer(typeof(DraggableView), typeof(DraggableViewRenderer))]
 namespace DragViewSample.iOS.Renderers

@@ -1,14 +1,20 @@
-﻿using System;
+﻿using FloorPlan.Custom;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace FloorPlan.Renderers
+namespace FloorPlan.Custom
 {
     public partial class DraggableView : ContentView
     {
+
+        public DraggableView()
+        {
+            Content = new Custom.DragItem();
+        }
         public event EventHandler DragStart= delegate { };
         public event EventHandler DragEnd = delegate { };
 
@@ -18,8 +24,6 @@ namespace FloorPlan.Renderers
           declaringType: typeof(DraggableView),
           defaultValue: false,
           defaultBindingMode: BindingMode.TwoWay);
-
-        
 
         public bool IsDragging
         {

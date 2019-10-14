@@ -8,67 +8,51 @@
              xmlns:drag="clr-namespace:FloorPlan.Renderers"
              BackgroundColor="White">
 
-    <Grid x:Name="ParentLayoutGrid">
-        <Grid>
+    <Grid>
+        <Grid x:Name="ParentLayoutGrid">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="80"/>
                 <ColumnDefinition Width="120"/>
             </Grid.ColumnDefinitions>
             <Grid x:Name="FloorPlan" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <Image Source="floor.png" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
             </Grid>
-            <Grid VerticalOptions="FillAndExpand" Grid.Column="1">
+            
+            <Grid VerticalOptions="FillAndExpand" Grid.Column="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <StackLayout>
-                    <ImageButton Source="close.png" HeightRequest="40" WidthRequest="40" Command="{Binding CloseCommaond}" BackgroundColor="Transparent"/>
+                    <ImageButton Source="close.png" HeightRequest="55" WidthRequest="55" Command="{Binding CloseCommaond}" BackgroundColor="Transparent"/>
                     <Label Text="Close Window" HorizontalOptions="Center" FontSize="14"/>
                 </StackLayout>
-                <ScrollView x:Name="ListScroll" Grid.Row="1">
-                    <ListView x:Name="DevicesList" ItemSelected="DevicesList_ItemSelected" ItemsSource="{Binding Devices}" VerticalOptions="FillAndExpand">
-                        <BindableLayout.ItemTemplate>
-                            <DataTemplate>
+                <ListView x:Name="DevicesList" HasUnevenRows="True" Grid.Row="1" ItemTapped="DevicesList_ItemTapped" SelectionMode="None" ItemsSource="{Binding Devices}" VerticalOptions="FillAndExpand">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
                                 <StackLayout>
-                                    <Image Source="{Binding Image}" HeightRequest="40" WidthRequest="40" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Image Source="{Binding Image}" HeightRequest="55" WidthRequest="55" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                     </Image>
                                     <Label Text="{Binding Name}" HorizontalOptions="Center"/>
                                 </StackLayout>
-                            </DataTemplate>
-                        </BindableLayout.ItemTemplate>
-                    </ListView>
-                </ScrollView>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
                 <StackLayout Grid.Row="2">
                     <StackLayout>
-                        <ImageButton Source="delete.png" HeightRequest="40" WidthRequest="40" Command="{Binding CloseWindow}" BackgroundColor="Transparent"/>
+                        <ImageButton x:Name="DeleteDevicesBtn" Source="delete.png" HeightRequest="55" WidthRequest="55" Clicked="DeleteDevicesBtn_Clicked" BackgroundColor="Transparent"/>
                         <Label Text="Delete Device" HorizontalOptions="Center" FontSize="14"/>
                     </StackLayout>
                     <StackLayout>
-                        <ImageButton Source="open.png" HeightRequest="40" WidthRequest="40" Command="{Binding OpenCommand}" BackgroundColor="Transparent"/>
+                        <ImageButton Source="open.png" HeightRequest="55" WidthRequest="55" Command="{Binding OpenFloorDevicesCommand}" BackgroundColor="Transparent"/>
                         <Label Text="Open Floor Layout" HorizontalOptions="Center" FontSize="14"/>
                     </StackLayout>
                 </StackLayout>
             </Grid>
-        </Grid>
-        <Grid x:Name="DragSurface" IsVisible="False" BackgroundColor="Red">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="120"/>
-            </Grid.ColumnDefinitions>
-            <Frame x:Name="FloorPlanArea" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" BorderColor="Red">
-                <Image Source="floor.png" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
-            </Frame>
-            <drag:DraggableView x:Name="dragView" Grid.Column="1" BackgroundColor="Transparent" DragEnd="DragView_DragEnd">
-                <drag:DraggableView.Content>
-                    <Image x:Name="dragImage" BackgroundColor="Transparent"
-                               Source="{Binding Image}"
-                               HeightRequest="40"
-                               WidthRequest="40"
-                               Margin="10,0"/>
-                </drag:DraggableView.Content>
-            </drag:DraggableView>
         </Grid>
     </Grid>
 </ContentPage>

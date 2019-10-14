@@ -3,15 +3,30 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Windows.Input;
 
 namespace FloorPlan.ViewModels
 {
-    public class FloorPlanViewModel : BaseViewModel
+    public class FloorPlanViewModel
     {
         public FloorPlanViewModel()
         {
             Devices = new ObservableCollection<DeviceModel>(GetDevices());
+
+            OpenFloorDevicesCommand = new Xamarin.Forms.Command(OpenFloorDevices);
         }
+
+        private void OpenFloorDevices(object obj)
+        {
+            if (App.Current.Properties.ContainsKey("devices"))
+            {
+                List<Models.DeviceModel> placedDevices = App.Current.Properties["devices"] as List<Models.DeviceModel>;
+            }
+            
+            //TODO: Render saved floor plan on screen
+        }
+
+        public ICommand OpenFloorDevicesCommand { get; set; }
 
         public ObservableCollection<DeviceModel> Devices { get; set; }
 
