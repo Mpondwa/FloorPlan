@@ -123,7 +123,7 @@ namespace FloorPlan.Droid.Renderers
                     break;
                 case MotionEventActions.Up:
                     touchedDown = false;
-                    dragView.DragEnded();
+                    dragView.DragEnded(new Point { X = GetX(), Y = GetY() });
                     break;
                 case MotionEventActions.Cancel:
                     touchedDown = false;

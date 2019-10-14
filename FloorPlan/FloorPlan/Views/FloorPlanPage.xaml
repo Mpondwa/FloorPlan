@@ -28,20 +28,17 @@
                     <Label Text="Close Window" HorizontalOptions="Center" FontSize="14"/>
                 </StackLayout>
                 <ScrollView x:Name="ListScroll" Grid.Row="1">
-                    <StackLayout x:Name="DevicesList" BindableLayout.ItemsSource="{Binding Devices}" Focused="DevicesList_Focused" VerticalOptions="FillAndExpand">
+                    <ListView x:Name="DevicesList" ItemSelected="DevicesList_ItemSelected" ItemsSource="{Binding Devices}" VerticalOptions="FillAndExpand">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout>
-                                    <Image Source="{Binding Image}" HeightRequest="40" Focused="Image_Focused" WidthRequest="40" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                        <Image.GestureRecognizers>
-                                            <PanGestureRecognizer PanUpdated="PanningGesture_PanUpdated" />
-                                        </Image.GestureRecognizers>
+                                    <Image Source="{Binding Image}" HeightRequest="40" WidthRequest="40" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                     </Image>
                                     <Label Text="{Binding Name}" HorizontalOptions="Center"/>
                                 </StackLayout>
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>
-                    </StackLayout>
+                    </ListView>
                 </ScrollView>
                 <StackLayout Grid.Row="2">
                     <StackLayout>
@@ -55,23 +52,23 @@
                 </StackLayout>
             </Grid>
         </Grid>
-        <!--<AbsoluteLayout>-->
-            <Grid x:Name="AbsoluteFloor" IsVisible="False" BackgroundColor="Red">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="120"/>
-                </Grid.ColumnDefinitions>
+        <Grid x:Name="DragSurface" IsVisible="False" BackgroundColor="Red">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="120"/>
+            </Grid.ColumnDefinitions>
+            <Frame x:Name="FloorPlanArea" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" BorderColor="Red">
                 <Image Source="floor.png" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
-                <drag:DraggableView x:Name="dragView" Grid.Column="1" BackgroundColor="Transparent">
-                    <drag:DraggableView.Content>
-                        <Image x:Name="image"  BackgroundColor="Transparent"
-                               Source="fan.png"
+            </Frame>
+            <drag:DraggableView x:Name="dragView" Grid.Column="1" BackgroundColor="Transparent" DragEnd="DragView_DragEnd">
+                <drag:DraggableView.Content>
+                    <Image x:Name="dragImage" BackgroundColor="Transparent"
+                               Source="{Binding Image}"
                                HeightRequest="40"
                                WidthRequest="40"
                                Margin="10,0"/>
-                    </drag:DraggableView.Content>
-                </drag:DraggableView>
-            </Grid>
-        <!--</AbsoluteLayout>-->
+                </drag:DraggableView.Content>
+            </drag:DraggableView>
+        </Grid>
     </Grid>
 </ContentPage>

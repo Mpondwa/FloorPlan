@@ -19,11 +19,15 @@ namespace FloorPlan.Renderers
           defaultValue: false,
           defaultBindingMode: BindingMode.TwoWay);
 
+        
+
         public bool IsDragging
         {
             get { return (bool)GetValue(IsDraggingProperty); }
             set { SetValue(IsDraggingProperty, value); }
         }
+
+        public Point NewPosition { get; set; }
 
         public static readonly BindableProperty RestorePositionCommandProperty = BindableProperty.Create(nameof(RestorePositionCommand), typeof(ICommand), typeof(DraggableView), default(ICommand), BindingMode.TwoWay, null, OnRestorePositionCommandPropertyChanged);
 
@@ -60,11 +64,11 @@ namespace FloorPlan.Renderers
             IsDragging = true;
         }
 
-        public void DragEnded()
+        public void DragEnded(Point newPosition)
         {
             IsDragging = false;
+            NewPosition = newPosition;
             DragEnd(this, default(EventArgs));
         }
-
     }
 }
