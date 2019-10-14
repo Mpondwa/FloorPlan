@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="FloorPlan.MainPage"
+             BackgroundColor="White">
+
+    <Grid Padding="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="120"/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="FloorPlan" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Image Source="floor.png" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+        </Grid>
+        <Grid VerticalOptions="FillAndExpand" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackLayout>
+                <ImageButton Source="close.png" HeightRequest="40" WidthRequest="40" Command="{Binding CloseCommaond}" BackgroundColor="Transparent"/>
+                <Label Text="Close Window" HorizontalOptions="Center" FontSize="14"/>
+            </StackLayout>
+            <ListView ItemsSource="{Binding Devices}" Grid.Row="1" VerticalOptions="FillAndExpand">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding DeviceImage}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout Grid.Row="2">
+                <StackLayout>
+                    <ImageButton Source="delete.png" HeightRequest="40" WidthRequest="40" Command="{Binding CloseWindow}" BackgroundColor="Transparent"/>
+                    <Label Text="Delete Device" HorizontalOptions="Center" FontSize="14"/>
+                </StackLayout>
+                <StackLayout>
+                    <ImageButton Source="open.png" HeightRequest="40" WidthRequest="40" Command="{Binding OpenCommand}" BackgroundColor="Transparent"/>
+                    <Label Text="Open Floor Layout" HorizontalOptions="Center" FontSize="14"/>
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </Grid>
+</ContentPage>

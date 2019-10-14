@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="FloorPlan.Views.FloorPlanPage"
+             xmlns:drag="clr-namespace:FloorPlan.Renderers"
+             BackgroundColor="White">
+
+    <Grid x:Name="ParentLayoutGrid">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="120"/>
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="FloorPlan" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Image Source="floor.png" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+            </Grid>
+            <Grid VerticalOptions="FillAndExpand" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackLayout>
+                    <ImageButton Source="close.png" HeightRequest="40" WidthRequest="40" Command="{Binding CloseCommaond}" BackgroundColor="Transparent"/>
+                    <Label Text="Close Window" HorizontalOptions="Center" FontSize="14"/>
+                </StackLayout>
+                <ScrollView x:Name="ListScroll" Grid.Row="1">
+                    <StackLayout x:Name="DevicesList" BindableLayout.ItemsSource="{Binding Devices}" Focused="DevicesList_Focused" VerticalOptions="FillAndExpand">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+                                    <Image Source="{Binding Image}" HeightRequest="40" Focused="Image_Focused" WidthRequest="40" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Image.GestureRecognizers>
+                                            <PanGestureRecognizer PanUpdated="PanningGesture_PanUpdated" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                    <Label Text="{Binding Name}" HorizontalOptions="Center"/>
+                                </StackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </ScrollView>
+                <StackLayout Grid.Row="2">
+                    <StackLayout>
+                        <ImageButton Source="delete.png" HeightRequest="40" WidthRequest="40" Command="{Binding CloseWindow}" BackgroundColor="Transparent"/>
+                        <Label Text="Delete Device" HorizontalOptions="Center" FontSize="14"/>
+                    </StackLayout>
+                    <StackLayout>
+                        <ImageButton Source="open.png" HeightRequest="40" WidthRequest="40" Command="{Binding OpenCommand}" BackgroundColor="Transparent"/>
+                        <Label Text="Open Floor Layout" HorizontalOptions="Center" FontSize="14"/>
+                    </StackLayout>
+                </StackLayout>
+            </Grid>
+        </Grid>
+        <!--<AbsoluteLayout>-->
+            <Grid x:Name="AbsoluteFloor" IsVisible="False" BackgroundColor="Red">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="120"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="floor.png" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                <drag:DraggableView x:Name="dragView" Grid.Column="1" BackgroundColor="Transparent">
+                    <drag:DraggableView.Content>
+                        <Image x:Name="image"  BackgroundColor="Transparent"
+                               Source="fan.png"
+                               HeightRequest="40"
+                               WidthRequest="40"
+                               Margin="10,0"/>
+                    </drag:DraggableView.Content>
+                </drag:DraggableView>
+            </Grid>
+        <!--</AbsoluteLayout>-->
+    </Grid>
+</ContentPage>
