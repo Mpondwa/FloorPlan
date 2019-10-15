@@ -88,37 +88,26 @@ namespace FloorPlan.Droid.Renderers
             switch (e.Action)
             {
                 case MotionEventActions.Down:
-                    //if(dragView.DragMode == DragMode.Touch)
-                    { 
-                        if(!touchedDown)
+                    if (!touchedDown)
+                    {
+                        if (firstTime)
                         {
-                            if (firstTime)
-                            {
-                                originalX = GetX();
-                                originalY = GetY();
-                                firstTime = false;
-                            }
-                            dragView.DragStarted();
+                            originalX = GetX();
+                            originalY = GetY();
+                            firstTime = false;
                         }
+                        dragView.DragStarted();
+                    }
                       
                         touchedDown = true;
-                    }
                     dX = x - this.GetX();
                     dY = y - this.GetY();
                     break;
                 case MotionEventActions.Move:
                     if (touchedDown)
                     {
-                       //if (dragView.DragDirection == DragDirectionType.All || dragView.DragDirection == DragDirectionType.Horizontal)
-                       {
-                            SetX(x - dX);
-                       }
-
-                       //if (dragView.DragDirection == DragDirectionType.All || dragView.DragDirection == DragDirectionType.Vertical)
-                       {
-                            SetY(y - dY);
-                       }
-                       
+                        SetX(x - dX);
+                        SetY(y - dY);
                     }
                     break;
                 case MotionEventActions.Up:

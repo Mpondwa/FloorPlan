@@ -23,13 +23,6 @@ namespace FloorPlan.Views
             devicesPlaced = new List<DeviceModel>();
         }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-
-            DisplayAlert("Alert", "Tap on the device item to begin placing on the floor plan", "Dismiss");
-        }
-
         List<DeviceModel> devicesPlaced;
 
         private void DragView_DragEnd(object sender, EventArgs e)

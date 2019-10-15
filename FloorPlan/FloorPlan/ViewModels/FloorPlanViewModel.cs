@@ -23,7 +23,7 @@ namespace FloorPlan.ViewModels
                 List<Models.DeviceModel> placedDevices = App.Current.Properties["devices"] as List<Models.DeviceModel>;
             }
             
-            //TODO: Render saved floor plan on screen
+            //TODO: Render saved floor plan devices on screen
         }
 
         public ICommand OpenFloorDevicesCommand { get; set; }

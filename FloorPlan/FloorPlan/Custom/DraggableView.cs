@@ -66,12 +66,16 @@ namespace FloorPlan.Custom
         {
             DragStart(this, default(EventArgs));
             IsDragging = true;
+
+            (Content as DragItem).AddDragIcon();
         }
 
         public void DragEnded(Point newPosition)
         {
             IsDragging = false;
             NewPosition = newPosition;
+            (Content as DragItem).RemoveDragIcon();
+
             DragEnd(this, default(EventArgs));
         }
     }

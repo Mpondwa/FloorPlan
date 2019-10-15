@@ -14,7 +14,6 @@ namespace DragViewSample.iOS.Renderers
     
     public class DraggableViewRenderer : VisualElementRenderer<View>
     {
-        //bool longPress = false;
         bool firstTime = true;
         UIPanGestureRecognizer panGesture;
         CGPoint lastLocation;

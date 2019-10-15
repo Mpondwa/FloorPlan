@@ -5,11 +5,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="FloorPlan.Views.FloorPlanPage"
-             xmlns:drag="clr-namespace:FloorPlan.Renderers"
              BackgroundColor="White">
 
     <Grid>
-        <Grid x:Name="ParentLayoutGrid">
+        <Grid x:Name="ParentLayoutGrid" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="80"/>
@@ -54,5 +53,6 @@
                 </StackLayout>
             </Grid>
         </Grid>
+        <Label Text="Tap on device, then start dragging to place on floor plan." TextColor="Gray" VerticalOptions="End" HorizontalOptions="Center"/>
     </Grid>
 </ContentPage>

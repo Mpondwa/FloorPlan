@@ -16,5 +16,15 @@ namespace FloorPlan.Custom
         {
             InitializeComponent();
         }
+
+        public void AddDragIcon()
+        {
+            DragIcon.IsVisible = true;
+        }
+
+        public void RemoveDragIcon()
+        {
+            DragIcon.IsVisible = false;
+        }
     }
 }
